@@ -1,0 +1,17 @@
+{
+    "name": "boots-rentability",
+    "version": "0.1.0",
+    "description": "Entry for League of legends useless contest 2017. Tells you the rentability of your boots in your last game",
+    "main": "main.js",
+    "scripts": {
+        "test": "node main.js"
+    },
+    "author": "Equinoxbig",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^0.16.2",
+        "body-parser": "^1.17.2",
+        "express": "^4.15.3",
+        "helmet": "^3.6.1"
+    }
+}
