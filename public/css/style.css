@@ -1,0 +1,166 @@
+/*
+ * Background image + font family
+ */
+
+body {
+    background-image: url('http://na.leagueoflegends.com/sites/default/files/upload/environmentart-sru-04_1920.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+* {
+    font-family: 'Rubik', sans-serif;
+}
+
+
+/*
+ * Github button + text
+ */
+
+.git {
+    position: fixed;
+    bottom: 0;
+    left: 15;
+    display: block;
+}
+
+.git .git-href {
+    color: #d1d1d1;
+    -moz-transition: color .4s ease-in;
+    -o-transition: color .4s ease-in;
+    -webkit-transition: color .4s ease-in;
+}
+
+.git .git-text {
+    font-size: 26px;
+    margin-left: 15px;
+    float: right;
+    margin-top: 11px;
+}
+
+.git .git-href:hover {
+    color: white;
+}
+
+
+/*
+ * Center divs
+ */
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: -webkit-translate(-50%, -50%);
+    transform: -moz-translate(-50%, -50%);
+    transform: -ms-translate(-50%, -50%);
+}
+
+
+/*
+ * Name selector + server selector + button + error text
+ * Inspired but modified version from: http://bulma.io/documentation/elements/form/
+ */
+
+.summoner-name {
+    margin-bottom: 25px;
+    width: 300px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    font-size: 1.25rem;
+    height: 2.25em;
+    border-color: #dbdbdb;
+    color: rgb(38, 38, 38);
+    padding-bottom: calc(0.375em - 1px);
+    padding-left: calc(0.795em - 1px);
+    padding-right: calc(0.625em - 1px);
+    padding-top: calc(0.375em - 1px);
+}
+
+.summoner-name:focus, .summoner-name:hover, .server:focus, .server:hover {
+    outline: none;
+    border: 0.105em solid #7091e0;
+}
+
+.border-transition {
+    -moz-transition: border .25s ease-in;
+    -o-transition: border .25s ease-in;
+    -webkit-transition: border .25s ease-in;
+}
+
+.server {
+    height: 2.25em;
+    width: 300px;
+    margin-bottom: 25px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    font-size: 1.25rem;
+    padding-bottom: calc(0.375em - 1px);
+    padding-left: calc(0.625em - 1px);
+    padding-right: calc(0.625em - 1px);
+    padding-top: calc(0.375em - 1px);
+    position: relative;
+    vertical-align: top;
+    border-color: #dbdbdb;
+    color: rgb(38, 38, 38);
+    cursor: pointer;
+}
+
+.submit {
+    margin-bottom: 250px;
+    width: 300px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    font-size: 1.25rem;
+    height: 2.25em;
+    position: relative;
+    vertical-align: top;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-color: #06d15e;
+    color: rgb(38, 38, 38);
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #06d15e;
+    color: white;
+    outline: none;
+}
+
+.submit:hover {
+    border: 0.125em solid #05bc55;
+    outline: none;
+}
+
+.error-text {
+    font-size: 22px;
+    color: #ad1d00;
+    margin-top: -10px;
+}
+
+
+/*
+ * Background for results
+ */
+
+.results {
+    /*Centers the div*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: -webkit-translate(-50%, -50%);
+    transform: -moz-translate(-50%, -50%);
+    transform: -ms-translate(-50%, -50%);
+    /*Div style settings*/
+    background-color: black;
+    height: 80%;
+    width: 93%;
+    opacity: 0.57;
+}

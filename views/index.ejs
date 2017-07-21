@@ -1,0 +1,43 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Boots Rentability</title>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <script type="text/javascript" src="js/boots.js"></script>
+    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.min.css" rel="stylesheet" type="text/css">-->
+</head>
+
+<body>
+    <div class="centered home">
+        <input class="summoner-name border-transition" id="summonerName" placeholder="Enter a summoner name" type="text"></input>
+        <br>
+        <select id="server" class="server border-transition">
+            <option value="" disabled selected>Pick your server</option>
+            <option value="BR">BR</option>
+            <option value="EUNE">EUNE</option>
+            <option value="EUW">EUW</option>
+            <option value="JP">JP</option>
+            <option value="KR">KR</option>
+            <option value="LAN">LAN</option>
+            <option value="LAS">LAS</option>
+            <option value="NA">NA</option>
+            <option value="OCE">OCE</option>
+            <option value="TR">TR</option>
+            <option value="RU">RU</option>
+            <option value="PBE">PBE</option>
+        </select>
+        <strong class="error-text" id="error-text"><br>Please enter a summoner<br>name and pick your server<br></strong>
+        <br>
+        <button id="submit" class="submit border-transition">Get useless data !</button>
+    </div>
+
+    <div class="git">
+        <a href="https://github.com/Equinoxbig/boots-rentability" target="_blank" class="git-href transition">
+            <i class="fa fa-3x fa-github" aria-hidden="true"></i>
+            <h3 class="git-text">Check the project on Github.</h3>
+        </a>
+    </div>
+</body>

@@ -17,14 +17,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.disable('x-powered-by');
 app.use(helmet());
 
+// Page rendering
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/public'));
+
 // Routes
 app
     .get('/', (req, res) => {
         // Render page
-        res.status(200).json({
-            message: 'OK',
-            code: 200
-        });
+        res.status(200).render('index');
     })
     .post('/api/', (req, res) => {
         if (req.body.server && req.body.username) {

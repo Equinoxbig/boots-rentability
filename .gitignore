@@ -1,5 +1,4 @@
 config.json
 .eslintrc.json
 node_modules
-views/
-public/
+package-lock.json
