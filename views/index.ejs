@@ -43,7 +43,7 @@
         <h3 id="reset"><u class="fontFira color-transition">< Go back to summoner selection !</u></h3>
         <div class="timeTaken">
             <img src="/images/heimy.gif"></img>
-            <h3>Request took : <strong id="timeTaken">...</strong> seconds</h3>
+            <h3><strong id="resultSummonerName"></strong>Request took : <strong id="timeTaken">...</strong> seconds</h3>
         </div>
         <img id="championIcon" src="" width="96" height="96">
         <h2 id="lastGameAs">Last game as <strong id="championName">...</strong> :</h2>
@@ -57,34 +57,36 @@
                 <h3>Which is the equivalent of :</h3>
                 <h2><span id="totalTeemosTravelled">...</span> Teemo(s)</h2>
                 <br>
-                <h3>Which is the equivalent of :</h3>
-                <h2>... Meters</h2>
-                <br>
                 <h3>Your average travel speed was :</h3>
-                <h2>... teemo(s) / minute</h2>
+                <h2><span id="averageTravelSpeed">...</span> Teemo(s) / minute</h2>
+                <br>
+                <h3>Your game lasted :</h3>
+                <h2><span id="gameDurationMinute">...</span> Minutes <span id="gameDurationSecond">...</span> Second(s)</h2>
             </div>
             <div class="column" id="c2">
                 <h3>You spent :</h3>
-                <h2>... Golds</h2>
+                <h2><span id="lastBootsCost">...</span> Gold(s)</h2>
                 <h3>in boots.</h3>
                 <br>
-                <h3>Thanks to your boots you travalled :</h3>
-                <h2>... Extra units</h2>
+                <h3>Thanks to your boots you travelled :</h3>
+                <h2><span id="extraUnitsTravelled">...</span> Extra units</h2>
                 <br>
                 <h3>Which is the equivalent of :</h3>
-                <h2>... Teemos</h2>
+                <h2><span id="extraTeemosTravelled">...</span> Teemo(s)</h2>
                 <br>
-                <h3>Which is the equivalent of :</h3>
-                <h2>... Kilometers</h2>
+                <h3>Which represents :</h3>
+                <h2><span id="extraPercentageTravelled">...</span>%</h2>
+                <h3>of the total distance you travelled.</h3>
             </div>
             <div class="column" id="c3">
                 <h1>Fun facts :</h1>
                 <h3>You crossed the entire summoner's rift :</h3>
-                <h2>... Times</h2>
+                <h2><span id="crossedSummonersRiftTotal">...</span> Time(s) during the whole game</h2>
+                <h3><span id="crossedSummonersRiftBoots">...</span> Time(s) thanks to your boots.</h3>
                 <br>
-                <h3>You've been :</h3>
-                <h2>... Times</h2>
-                <h3>faster than sound.</h3>
+                <h3>Your boots gave you :</h3>
+                <h2><span id="extraFlash">...</span> Extra flash</h2>
+                <h6>riot pls nerf boots op</h6>
                 <br>
                 <h3>You can share those stats on twitter :</h3>
                 <img src="/images/twitterlogo.png" width="64" height="64" id="twitter"></img>

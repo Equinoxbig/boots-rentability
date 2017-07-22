@@ -168,7 +168,6 @@ module.exports.proceedData = (data) => {
         } else {
             data.buy.forEach((buy, index) => {
                 if (index != data.buy.length - 1) {
-
                     // Useless data
                     delete buy.type;
                     delete buy.participantId;
@@ -185,15 +184,14 @@ module.exports.proceedData = (data) => {
                     buy.specificDistanceTravelled = buy.timeSpent * buy.stats.ms;
                     // Distance travelled with the movespeed of the boots + basic champion ms
                     buy.totalDistanceTravelled = buy.timeSpent * buy.stats.totalSpeed;
-
                     // Update global stats
                     stats.totalDistanceTravelled += buy.totalDistanceTravelled;
                     buy.stats.totalSpeed > stats.maxMovementSpeed ? stats.maxMovementSpeed = buy.stats.totalSpeed : stats.maxMovementSpeed += 0;
-                    stats.TravelledWithBoots += buy.specificDistanceTravelled;
+                    stats.travelledWithBoots += buy.specificDistanceTravelled;
+
 
                     results.push(buy);
                 } else {
-
                     // Useless data
                     delete buy.type;
                     delete buy.participantId;
@@ -215,6 +213,7 @@ module.exports.proceedData = (data) => {
                     stats.totalDistanceTravelled += buy.totalDistanceTravelled;
                     buy.stats.totalSpeed > stats.maxMovementSpeed ? stats.maxMovementSpeed = buy.stats.totalSpeed : stats.maxMovementSpeed += 0;
                     stats.travelledWithBoots += buy.specificDistanceTravelled;
+
 
                     results.push(buy);
                     resolve({ results, stats });
