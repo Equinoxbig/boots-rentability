@@ -4,7 +4,7 @@
     "description": "Entry for League of legends useless contest 2017. Tells you the rentability of your boots in your last game",
     "main": "main.js",
     "scripts": {
-        "test": "node main.js"
+        "test": "npm install && node main.js"
     },
     "author": "Equinoxbig",
     "license": "MIT",
