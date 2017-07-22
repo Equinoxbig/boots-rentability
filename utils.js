@@ -139,7 +139,7 @@ module.exports.proceedData = (data) => {
         let gameDuration = 1000 * data.summoner.matchData.duration;
         let firstItem = data.buy[0] ? data.buy[0] : { timestamp: gameDuration };
 
-        // Distance parkoured without boots.
+        // Distance travelled without boots.
         let withoutBoots = {
             timestamp: 0,
             itemId: 'champion',
@@ -149,14 +149,14 @@ module.exports.proceedData = (data) => {
                 ms: data.summoner.champion.stats.movespeed
             },
             timeSpent: firstItem.timestamp / 1000,
-            totalDistanceParkoured: data.summoner.champion.stats.movespeed * (firstItem.timestamp / 1000),
-            specificDistanceParkoured: data.summoner.champion.stats.movespeed * (firstItem.timestamp / 1000)
+            totalDistanceTravelled: data.summoner.champion.stats.movespeed * (firstItem.timestamp / 1000),
+            specificDistanceTravelled: data.summoner.champion.stats.movespeed * (firstItem.timestamp / 1000)
         };
 
         let stats = {
-            totalDistanceParkoured: withoutBoots.totalDistanceParkoured,
+            totalDistanceTravelled: withoutBoots.totalDistanceTravelled,
             maxMovementSpeed: data.summoner.champion.stats.movespeed,
-            parkouredWithBoots: 0,
+            travelledWithBoots: 0,
             gameDuration: data.summoner.matchData.duration
         };
 
@@ -181,15 +181,15 @@ module.exports.proceedData = (data) => {
                     // Multiply this by the actual item's ms
                     buy.timeSpent = (data.buy[index + 1].timestamp - buy.timestamp) / 1000;
 
-                    // Distance parkoured with the movespeed of the boots
-                    buy.specificDistanceParkoured = buy.timeSpent * buy.stats.ms;
-                    // Distance parkoured with the movespeed of the boots + basic champion ms
-                    buy.totalDistanceParkoured = buy.timeSpent * buy.stats.totalSpeed;
+                    // Distance travelled with the movespeed of the boots
+                    buy.specificDistanceTravelled = buy.timeSpent * buy.stats.ms;
+                    // Distance travelled with the movespeed of the boots + basic champion ms
+                    buy.totalDistanceTravelled = buy.timeSpent * buy.stats.totalSpeed;
 
                     // Update global stats
-                    stats.totalDistanceParkoured += buy.totalDistanceParkoured;
+                    stats.totalDistanceTravelled += buy.totalDistanceTravelled;
                     buy.stats.totalSpeed > stats.maxMovementSpeed ? stats.maxMovementSpeed = buy.stats.totalSpeed : stats.maxMovementSpeed += 0;
-                    stats.parkouredWithBoots += buy.specificDistanceParkoured;
+                    stats.TravelledWithBoots += buy.specificDistanceTravelled;
 
                     results.push(buy);
                 } else {
@@ -206,15 +206,15 @@ module.exports.proceedData = (data) => {
                     // last buy timestamp
                     buy.timeSpent = (gameDuration - buy.timestamp) / 1000;
 
-                    // Distance parkoured with the movespeed of the boots
-                    buy.specificDistanceParkoured = buy.timeSpent * buy.stats.ms;
-                    // Distance parkoured with the movespeed of the boots + basic champion ms
-                    buy.totalDistanceParkoured = buy.timeSpent * buy.stats.totalSpeed;
+                    // Distance travelled with the movespeed of the boots
+                    buy.specificDistanceTravelled = buy.timeSpent * buy.stats.ms;
+                    // Distance travelled with the movespeed of the boots + basic champion ms
+                    buy.totalDistanceTravelled = buy.timeSpent * buy.stats.totalSpeed;
 
                     // Update global stats
-                    stats.totalDistanceParkoured += buy.totalDistanceParkoured;
+                    stats.totalDistanceTravelled += buy.totalDistanceTravelled;
                     buy.stats.totalSpeed > stats.maxMovementSpeed ? stats.maxMovementSpeed = buy.stats.totalSpeed : stats.maxMovementSpeed += 0;
-                    stats.parkouredWithBoots += buy.specificDistanceParkoured;
+                    stats.travelledWithBoots += buy.specificDistanceTravelled;
 
                     results.push(buy);
                     resolve({ results, stats });

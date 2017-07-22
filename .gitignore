@@ -2,3 +2,6 @@ config.json
 .eslintrc.json
 node_modules
 package-lock.json
+public/images/teemosad.gif
+public/images/teemoexhausted.gif
+public/images/teemohug.gif

@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 
-// Configuration and own files
+// Constants and request handler
 const constants = require('./constants.js');
 const utils = require('./utils.js');
 
@@ -41,7 +41,7 @@ app
                     .then(utils.fetchTimeline)
                     .then(utils.proceedData)
                     .then(data => {
-                        res.status(200).json(data);
+                        res.status(200).json({ data, code: 200, message: 'Success' });
                     }).catch((e) => { handleError(req, res, e); });
             } else {
                 // Shouldn't happen but just in case the server is not a valid server.

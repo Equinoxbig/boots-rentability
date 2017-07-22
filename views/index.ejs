@@ -7,11 +7,10 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
     <script type="text/javascript" src="js/boots.js"></script>
-    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.min.css" rel="stylesheet" type="text/css">-->
 </head>
 
 <body>
-    <div class="centered home">
+    <div class="centered home" id="home">
         <input class="summoner-name border-transition" id="summonerName" placeholder="Enter a summoner name" type="text"></input>
         <br>
         <select id="server" class="server border-transition">
@@ -29,15 +28,74 @@
             <option value="RU">RU</option>
             <option value="PBE">PBE</option>
         </select>
-        <strong class="error-text" id="error-text"><br>Please enter a summoner<br>name and pick your server<br></strong>
+        <strong class="hidden" id="error-text"><br>Please enter a summoner<br>name and pick your server<br></strong>
         <br>
         <button id="submit" class="submit border-transition">Get useless data !</button>
+        <br>
+        <div id="loading">
+            <img src="/images/heimy.gif"></img>
+            <h1 id="loader">Retrieving data :</h1>
+            <h4>A request can take up to 10 seconds depending on the server.</h4>
+        </div>
+    </div>
+
+    <div class="centered results hidden" id="results">
+        <h3 id="reset"><u class="fontFira color-transition">< Go back to summoner selection !</u></h3>
+        <div class="timeTaken">
+            <img src="/images/heimy.gif"></img>
+            <h3>Request took : <strong id="timeTaken">...</strong> seconds</h3>
+        </div>
+        <img id="championIcon" src="" width="96" height="96">
+        <h2 id="lastGameAs">Last game as <strong id="championName">...</strong> :</h2>
+
+        <div class="columns">
+            <div class="column" id="c1">
+                <h3>You travelled :</h3>
+                <h2><span id="totalDistanceTravelled">...</span> units </h2>
+                <h3>during this game.</h3>
+                <br>
+                <h3>Which is the equivalent of :</h3>
+                <h2><span id="totalTeemosTravelled">...</span> Teemo(s)</h2>
+                <br>
+                <h3>Which is the equivalent of :</h3>
+                <h2>... Meters</h2>
+                <br>
+                <h3>Your average travel speed was :</h3>
+                <h2>... teemo(s) / minute</h2>
+            </div>
+            <div class="column" id="c2">
+                <h3>You spent :</h3>
+                <h2>... Golds</h2>
+                <h3>in boots.</h3>
+                <br>
+                <h3>Thanks to your boots you travalled :</h3>
+                <h2>... Extra units</h2>
+                <br>
+                <h3>Which is the equivalent of :</h3>
+                <h2>... Teemos</h2>
+                <br>
+                <h3>Which is the equivalent of :</h3>
+                <h2>... Kilometers</h2>
+            </div>
+            <div class="column" id="c3">
+                <h1>Fun facts :</h1>
+                <h3>You crossed the entire summoner's rift :</h3>
+                <h2>... Times</h2>
+                <br>
+                <h3>You've been :</h3>
+                <h2>... Times</h2>
+                <h3>faster than sound.</h3>
+                <br>
+                <h3>You can share those stats on twitter :</h3>
+                <img src="/images/twitterlogo.png" width="64" height="64" id="twitter"></img>
+            </div>
+        </div>
     </div>
 
     <div class="git">
-        <a href="https://github.com/Equinoxbig/boots-rentability" target="_blank" class="git-href transition">
+        <a href="https://github.com/Equinoxbig/boots-rentability" target="_blank" class="git-href color-transition">
             <i class="fa fa-3x fa-github" aria-hidden="true"></i>
-            <h3 class="git-text">Check the project on Github.</h3>
+            <h3 class="git-text fontFira">Check the project on Github.</h3>
         </a>
     </div>
 </body>

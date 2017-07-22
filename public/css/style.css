@@ -14,10 +14,23 @@ body {
     font-family: 'Rubik', sans-serif;
 }
 
+.hidden {
+    display: none!important;
+}
+
 
 /*
  * Github button + text
  */
+
+@font-face {
+    font-family: "Fira";
+    src: url('./FiraCode.ttf');
+}
+
+.fontFira {
+    font-family: 'Fira', monospace;
+}
 
 .git {
     position: fixed;
@@ -28,9 +41,6 @@ body {
 
 .git .git-href {
     color: #d1d1d1;
-    -moz-transition: color .4s ease-in;
-    -o-transition: color .4s ease-in;
-    -webkit-transition: color .4s ease-in;
 }
 
 .git .git-text {
@@ -44,13 +54,20 @@ body {
     color: white;
 }
 
+.color-transition {
+    -moz-transition: color .4s ease-in;
+    -o-transition: color .4s ease-in;
+    -webkit-transition: color .4s ease-in;
+}
+
 
 /*
  * Center divs
  */
 
 .centered {
-    position: fixed;
+    position: absolute;
+    text-align: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -110,7 +127,7 @@ body {
 }
 
 .submit {
-    margin-bottom: 250px;
+    margin-bottom: 25px;
     width: 300px;
     border: 2px solid transparent;
     border-radius: 6px;
@@ -138,10 +155,24 @@ body {
     outline: none;
 }
 
-.error-text {
+#error-text {
     font-size: 22px;
     color: #ad1d00;
     margin-top: -10px;
+}
+
+
+/*
+ * Progress stuff
+ * Actually just text and a gif
+ * Gif link : http://forums.na.leagueoflegends.com/board/attachment.php?attachmentid=854387
+ * Where I found it : http://forums.na.leagueoflegends.com/board/showthread.php?t=4110560
+ * I assume it's copyright free however I couldn't find the author to give him credit :/
+ */
+
+#loading {
+    color: white;
+    opacity: 0
 }
 
 
@@ -150,17 +181,95 @@ body {
  */
 
 .results {
-    /*Centers the div*/
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transform: -webkit-translate(-50%, -50%);
-    transform: -moz-translate(-50%, -50%);
-    transform: -ms-translate(-50%, -50%);
-    /*Div style settings*/
-    background-color: black;
-    height: 80%;
-    width: 93%;
-    opacity: 0.57;
+    width: 95%;
+    height: 77.5%;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    text-align: center;
+    color: white;
+}
+
+#reset {
+    position: absolute;
+    color: grey;
+}
+
+#reset:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.timeTaken {
+    position: absolute;
+    color: white;
+    right: 15px;
+    top: 15px;
+    display: inline-block;
+}
+
+#championIcon {
+    border-radius: 50%;
+}
+
+.columns {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    flex-direction: row;
+    height: 600px;
+}
+
+.column {
+    position: relative;
+    flex-basis: 100%;
+    /*border: 3px solid black;*/
+    height: 100%;
+}
+
+#c1 {
+    order: 1;
+}
+
+#c2 {
+    order: 2;
+}
+
+#c3 {
+    order: 3;
+}
+
+#twitter {
+    border-radius: 10px;
+}
+
+#twitter:hover {
+    cursor: pointer;
+}
+
+@media only screen and (min-device-width: 480px) and (max-device-width: 768px) {
+    #championIcon {
+        border-radius: 50%;
+        margin-top: 40px;
+    }
+    .columns {
+        flex-wrap: wrap;
+    }
+    .column {
+        margin-top: 40px;
+        height: 33%;
+    }
+}
+
+@media screen and (max-device-width: 480px) {
+    #championIcon {
+        border-radius: 50%;
+        margin-top: 70px;
+    }
+    .columns {
+        flex-wrap: wrap;
+    }
+    .column {
+        margin-top: 40px;
+    }
 }
