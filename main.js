@@ -6,6 +6,7 @@ const helmet = require('helmet');
 // Constants and request handler
 const constants = require('./constants.js');
 const utils = require('./utils.js');
+const port = require('./config.json').port;
 
 const app = express();
 
@@ -61,7 +62,7 @@ app
         }
     });
 
-app.listen(1918);
+app.listen(port);
 
 function handleError(req, res, e) {
     console.error(e);

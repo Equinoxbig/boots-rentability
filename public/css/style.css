@@ -24,12 +24,12 @@ body {
  */
 
 @font-face {
-    font-family: "Fira";
-    src: url('./FiraCode.ttf');
+    font-family: "Firacode";
+    src: url('./FiraCode-Regular.ttf');
 }
 
 .fontFira {
-    font-family: 'Fira', monospace;
+    font-family: 'Firacode', monospace;
 }
 
 .git {
@@ -181,12 +181,13 @@ body {
  */
 
 .results {
-    width: 95%;
-    height: 77.5%;
-    background-color: rgba(0, 0, 0, 0.2);
+    width: 97%;
+    height: 85.5%;
+    background-color: rgba(0, 0, 0, 0.35);
     padding: 15px;
     text-align: center;
     color: white;
+    top: 46%!important;
 }
 
 #reset {
@@ -218,6 +219,7 @@ body {
     justify-content: center;
     flex-direction: row;
     height: 600px;
+    padding: 15px;
 }
 
 .column {
@@ -241,35 +243,72 @@ body {
 
 #twitter {
     border-radius: 10px;
+    margin-bottom: 200px;
 }
 
 #twitter:hover {
     cursor: pointer;
 }
 
-@media only screen and (min-device-width: 480px) and (max-device-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 1440px) and (orientation: landscape) {
     #championIcon {
-        border-radius: 50%;
-        margin-top: 40px;
+        margin-top: 200px;
+        margin-bottom: 50px;
     }
     .columns {
         flex-wrap: wrap;
     }
     .column {
         margin-top: 40px;
-        height: 33%;
+    }
+    .results {
+        height: 100%;
+        top: 52%!important;
+        position: fixed;
+        overflow: scroll;
+        padding-bottom: 50px;
+    }
+    #reset {
+        left: 50%;
+        transform: translate(-50%, 0);
+        top: 20px;
+    }
+    .timeTaken {
+        left: 50%;
+        transform: translate(-50%, 0);
+        top: 90px;
     }
 }
 
-@media screen and (max-device-width: 480px) {
+@media only screen and (max-width: 907px) {
     #championIcon {
-        border-radius: 50%;
-        margin-top: 70px;
+        margin-bottom: 50px;
+        margin-top: 300px;
     }
     .columns {
         flex-wrap: wrap;
     }
     .column {
         margin-top: 40px;
+    }
+    .results {
+        height: 100%;
+        top: 52%!important;
+        position: fixed;
+        overflow: scroll;
+        padding-bottom: 50px;
+    }
+    #reset {
+        left: 50%;
+        transform: translate(-50%, 0);
+        top: 20px;
+    }
+    .timeTaken {
+        left: 50%;
+        transform: translate(-50%, 0);
+        top: 130px;
+    }
+    .git {
+        left: 0;
     }
 }

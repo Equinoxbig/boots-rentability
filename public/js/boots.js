@@ -125,7 +125,9 @@ function fadeIn(element) {
 // Takes an API response and the ping of the request proceeds and displays them.
 function display(res, timeTaken) {
     document.getElementById('championName').innerText = res.data.results[0].stats.name;
-    document.getElementById('championIcon').src = 'https://ddragon.leagueoflegends.com/cdn/7.14.1/img/champion/' + res.data.results[0].stats.name.replace("'", '').replace(' ', '') + '.png';
+    var champIconName = res.data.results[0].stats.name;
+    champIconName.includes(' ') ? champIconName = champIconName.split(' ')[0] + champIconName.split(' ')[1].toLowerCase() : null;
+    document.getElementById('championIcon').src = 'https://ddragon.leagueoflegends.com/cdn/7.14.1/img/champion/' + (champIconName.includes("'") ? champIconName.split("'")[0] + champIconName.split("'")[1].toLowerCase() : champIconName) + '.png';
 
     document.getElementById('totalDistanceTravelled').innerText = res.data.stats.totalDistanceTravelled.toFixed(2).toString();
     document.getElementById('totalTeemosTravelled').innerText = (res.data.stats.totalDistanceTravelled / 110).toFixed(2).toString();
@@ -143,7 +145,7 @@ function display(res, timeTaken) {
     document.getElementById('crossedSummonersRiftBoots').innerText = (res.data.stats.travelledWithBoots / 19798).toFixed(2).toString();
 
     document.getElementById('lastBootsCost').innerText = res.data.results[res.data.results.length - 1].stats.cost.toString();
-    document.getElementById('extraUnitsTravelled').innerText = res.data.stats.travelledWithBoots.toString();
+    document.getElementById('extraUnitsTravelled').innerText = res.data.stats.travelledWithBoots.toFixed(2).toString();
     document.getElementById('extraTeemosTravelled').innerText = (res.data.stats.travelledWithBoots / 110).toFixed(2).toString();
     document.getElementById('extraPercentageTravelled').innerText = ((res.data.stats.travelledWithBoots / res.data.stats.totalDistanceTravelled) * 100).toFixed(2).toString();
     document.getElementById('extraFlash').innerText = (res.data.stats.travelledWithBoots / 425).toFixed(2).toString();
