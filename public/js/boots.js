@@ -125,7 +125,7 @@ function fadeIn(element) {
 function display(res, timeTaken) {
     document.getElementById('championName').innerText = res.data.results[0].stats.name;
     var champIconName = res.data.results[0].stats.name;
-    champIconName.includes(' ') ? champIconName = champIconName.split(' ')[0] + champIconName.split(' ')[1].toLowerCase() : null;
+    champIconName.includes(' ') ? champIconName = champIconName.split(' ')[0] + champIconName.split(' ')[1].toLowerCase() : champIconName = champIconName[0] + champIconName.substring(1).toLowerCase();
     document.getElementById('championIcon').src = 'https://ddragon.leagueoflegends.com/cdn/7.14.1/img/champion/' + (champIconName.includes("'") ? champIconName.split("'")[0] + champIconName.split("'")[1].toLowerCase() : champIconName) + '.png';
 
     document.getElementById('totalDistanceTravelled').innerText = res.data.stats.totalDistanceTravelled.toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.');

@@ -240,7 +240,7 @@ module.exports.proceedData = (data) => {
 module.exports.renderServerSide = (res) => {
 
     let champIconName = res.results[0].stats.name;
-    champIconName.includes(' ') ? champIconName = champIconName.split(' ')[0] + champIconName.split(' ')[1].toLowerCase() : null;
+    champIconName.includes(' ') ? champIconName = champIconName.split(' ')[0] + champIconName.split(' ')[1].toLowerCase() : champIconName = champIconName[0] + champIconName.substring(1).toLowerCase();
 
     let minutes = new Date(res.stats.gameDuration * 1000).getHours() - 1;
     (minutes > 0 && minutes < 3) ? minutes = 60: minutes = 0;
