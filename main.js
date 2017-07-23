@@ -29,6 +29,30 @@ app
         // Render page
         res.status(200).render('index');
     })
+    .get('/share', (req, res) => {
+        if (req.query.gameId && req.query.summonerID && req.query.server) {
+            let endpoint = constants.ENDPOINTS[req.query.server.toUpperCase()];
+
+            if (endpoint) {
+                utils.getGamePartipantId({ endpoint, gameId: req.query.gameId, summonerID: req.query.summonerID }).then(utils.getGameTimeline)
+                    .then(utils.getChampionData)
+                    .then(utils.fetchTimeline)
+                    .then(utils.proceedData)
+                    .then(data => {
+                        let template = utils.renderServerSide(data);
+                        res.render('share', { template });
+                    })
+                    .catch((e) => {
+                        console.error(e);
+                        res.redirect('/');
+                    });
+            } else {
+                res.redirect('/');
+            }
+        } else {
+            res.redirect('/');
+        }
+    })
     .post('/api/', (req, res) => {
         if (req.body.server && req.body.username) {
             let endpoint = constants.ENDPOINTS[req.body.server.toUpperCase()];
@@ -72,7 +96,3 @@ function handleError(req, res, e) {
         details: e.msg
     });
 }
-
-// For API testing purpose :
-// my id : 33429226
-// my accountId: 36975066

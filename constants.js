@@ -13,6 +13,21 @@ module.exports.ENDPOINTS = {
     'PBE': 'pbe1.api.riotgames.com'
 };
 
+module.exports.REVERSE_ENDPOINTS = {
+    'BR1': 'BR',
+    'EUN1': 'EUNE',
+    'EUW1': 'EUW',
+    'JP1': 'JP',
+    'KR': 'KR',
+    'LA1': 'LAN',
+    'LA2': 'LAS',
+    'NA1': 'NA',
+    'OC1': 'OCE',
+    'TR1': 'TR',
+    'RU': 'RU',
+    'PBE1': 'PBE'
+};
+
 module.exports.BOOTS = {
     '1001': {
         name: 'Boots of Speed',

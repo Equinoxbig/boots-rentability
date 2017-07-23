@@ -17,9 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() { fadeIn('home'); }, 1000);
     });
 
-    // Testing purpose :
-    //fadeOut('home', true);
-    //setTimeout(() => { fadeIn('results'); }, 1000);
 });
 
 
@@ -151,4 +148,7 @@ function display(res, timeTaken) {
     document.getElementById('extraTeemosTravelled').innerText = (res.data.stats.travelledWithBoots / 110).toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.');
     document.getElementById('extraPercentageTravelled').innerText = ((res.data.stats.travelledWithBoots / res.data.stats.totalDistanceTravelled) * 100).toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.');
     document.getElementById('extraFlash').innerText = (res.data.stats.travelledWithBoots / 425).toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.');
+
+    document.getElementById('shareLink').innerHTML = '<h3><span class="data-text fontFira"><u>' + res.data.gameInformation.shareLink + '</u></span></h3>';
+    document.getElementById('shareLink').href = res.data.gameInformation.shareLink;
 }

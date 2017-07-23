@@ -1,0 +1,75 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Boots Rentability</title>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+</head>
+
+<body>
+    <div class="centered results" id="results">
+        <a href="/"><h3 id="reset"><u class="fontFira color-transition">< Go back to summoner selection !</u></h3></a>
+
+        <img id="championIcon" src="<%=template.champIconName%>" width="96" height="96">
+        <h2 id="lastGameAs">Game as <strong id="championName"><%=template.championName%></strong> :</h2>
+
+        <div class="timeTaken">
+            <img src="/images/heimy.gif"></img>
+            <h3><strong id="resultSummonerName"><%=template.summonerName%></strong></h3>
+        </div>
+
+        <div class="columns">
+            <div class="column" id="c1">
+                <h3>Distance travelled :</h3>
+                <h2><span class="data-text" id="totalDistanceTravelled"><%=template.totalDistanceTravelled%></span> units </h2>
+                <h3>during this game.</h3>
+                <br>
+                <h3>Which is the equivalent of :</h3>
+                <h2><span class="data-text" id="totalTeemosTravelled"><%=template.totalTeemosTravelled%></span> Teemo(s)</h2>
+                <br>
+                <h3>Average travel speed was :</h3>
+                <h2><span class="data-text" id="averageTravelSpeed"><%=template.averageTravelSpeed%></span> Teemo(s) / minute</h2>
+                <br>
+                <h3>Game lasted :</h3>
+                <h2><span class="data-text" id="gameDurationMinute"><%=template.gameDurationMinute%></span> Minutes <span class="data-text" id="gameDurationSecond"><%=template.gameDurationSecond%></span> Second(s)</h2>
+            </div>
+            <div class="column" id="c2">
+                <h3>Spent :</h3>
+                <h2><span class="data-text" id="lastBootsCost"><%=template.lastBootsCost%></span> Gold(s)</h2>
+                <h3>in boots.</h3>
+                <br>
+                <h3>Thanks to Boots you travelled :</h3>
+                <h2><span class="data-text" id="extraUnitsTravelled"><%=template.extraUnitsTravelled%></span> Extra units</h2>
+                <br>
+                <h3>Which is the equivalent of :</h3>
+                <h2><span class="data-text" id="extraTeemosTravelled"><%=template.extraTeemosTravelled%></span> Teemo(s)</h2>
+                <br>
+                <h3>Which represents :</h3>
+                <h2><span class="data-text" id="extraPercentageTravelled"><%=template.extraPercentageTravelled%></span>%</h2>
+                <h3>of the total distance you travelled.</h3>
+            </div>
+            <div class="column" id="c3">
+                <h1>Fun facts :</h1>
+                <h3>Crossed the entire summoner's rift :</h3>
+                <h2><span class="data-text" id="crossedSummonersRiftTotal"><%=template.crossedSummonersRiftTotal%></span> Time(s) during the whole game</h2>
+                <h3><span class="data-text" id="crossedSummonersRiftBoots"><%=template.crossedSummonersRiftBoots%></span> Time(s) thanks to your boots.</h3>
+                <br>
+                <h3>This boots offered :</h3>
+                <h2><span class="data-text" id="extraFlash"><%=template.extraFlash%></span> Extra flash</h2>
+                <h6>riot pls nerf boots op</h6>
+                <br>
+                <h3>Share those stats with this link :</h3>
+                <a href="<%=template.shareLink%>" target="_blank"><h3><span class="data-text fontFira"><u><%=template.shareLink%></u></span></h3></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="git">
+        <a href="https://github.com/Equinoxbig/boots-rentability" target="_blank" class="git-href color-transition">
+            <i class="fa fa-3x fa-github" aria-hidden="true"></i>
+            <h3 class="git-text fontFira">Check the project / FAQ on Github.</h3>
+        </a>
+    </div>
+</body>

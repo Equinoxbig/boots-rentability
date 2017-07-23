@@ -41,7 +41,7 @@ module.exports.getRecentMatchList = (data) => {
 // Also returns more precise match data
 module.exports.getGamePartipantId = (data) => {
     let promise = new Promise((resolve, reject) => {
-        axios.get(`https://${data.endpoint}/lol/match/v3/matches/${data.match.gameId}?forAccountId=${data.summonerID}`)
+        axios.get(`https://${data.endpoint}/lol/match/v3/matches/${data.match ? data.match.gameId : data.gameId}?forAccountId=${data.summonerID}`)
             .then((match) => {
                 match.data.participantIdentities.forEach((participant) => {
                     if (participant.player) { if (participant.player.accountId == data.summonerID) data.summoner = participant; }
@@ -65,6 +65,7 @@ module.exports.getGameTimeline = (data) => {
                 // Side note : gameDuration is in seconds whereas timestamps timeline events are in ms
                 data.summoner.matchData = data.match.participants[data.summoner.participantId - 1];
                 data.summoner.matchData.duration = data.match.gameDuration;
+                data.summoner.matchData.gameId = data.match.gameId;
                 resolve({ endpoint: data.endpoint, summoner: data.summoner, timeline: timeline.data });
             })
             .catch((error) => {
@@ -134,6 +135,7 @@ module.exports.fetchTimeline = (data) => {
 // Returns the distance gained by buying boots depending on the timestamp when boots were bought
 // Also uses champion data to calculate using the exact basic movespeed
 module.exports.proceedData = (data) => {
+
     let promise = new Promise((resolve) => {
         // gameDuration is in seconds. Convert it to ms.
         let gameDuration = 1000 * data.summoner.matchData.duration;
@@ -157,14 +159,22 @@ module.exports.proceedData = (data) => {
             totalDistanceTravelled: withoutBoots.totalDistanceTravelled,
             maxMovementSpeed: data.summoner.champion.stats.movespeed,
             travelledWithBoots: 0,
-            gameDuration: data.summoner.matchData.duration
+            gameDuration: data.summoner.matchData.duration,
+        };
+
+        let gameInformation = {
+            summonerName: data.summoner.player.summonerName,
+            summonerID: data.summoner.player.accountId,
+            gameId: data.summoner.matchData.gameId,
+            endpoint: require('./constants.js').REVERSE_ENDPOINTS[data.summoner.player.currentPlatformId.toUpperCase()],
+            shareLink: `${require('./config.json').adress}/share?gameId=${data.summoner.matchData.gameId}&summonerID=${data.summoner.player.accountId}&server=${require('./constants.js').REVERSE_ENDPOINTS[data.summoner.player.currentPlatformId.toUpperCase()]}`
         };
 
         let results = [withoutBoots];
 
         // If cassiopeia is the last champion played
         if (!data.buy[0]) {
-            resolve({ results, stats });
+            resolve({ results, stats, gameInformation });
         } else {
             data.buy.forEach((buy, index) => {
                 if (index != data.buy.length - 1) {
@@ -216,10 +226,43 @@ module.exports.proceedData = (data) => {
 
 
                     results.push(buy);
-                    resolve({ results, stats });
+                    resolve({ results, stats, gameInformation });
                 }
             });
         }
     });
     return promise;
+};
+
+
+// Takes an object containing results and stats.
+// Used to prepare data for the share template from ejs
+module.exports.renderServerSide = (res) => {
+
+    let champIconName = res.results[0].stats.name;
+    champIconName.includes(' ') ? champIconName = champIconName.split(' ')[0] + champIconName.split(' ')[1].toLowerCase() : null;
+
+    let minutes = new Date(res.stats.gameDuration * 1000).getHours() - 1;
+    (minutes > 0 && minutes < 3) ? minutes = 60: minutes = 0;
+
+    let template = {
+        summonerName: res.gameInformation.summonerName,
+        shareLink: res.gameInformation.shareLink,
+        championName: res.results[0].stats.name,
+        champIconName: `https://ddragon.leagueoflegends.com/cdn/7.14.1/img/champion/${(champIconName.includes("'") ? champIconName.split("'")[0] + champIconName.split("'")[1].toLowerCase() : champIconName)}.png`,
+        totalDistanceTravelled: res.stats.totalDistanceTravelled.toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.'),
+        totalTeemosTravelled: (res.stats.totalDistanceTravelled / 110).toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.'),
+        gameDurationMinute: (minutes + new Date(res.stats.gameDuration * 1000).getMinutes()).toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.'),
+        gameDurationSecond: new Date(res.stats.gameDuration * 1000).getSeconds().toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.'),
+        averageTravelSpeed: (((res.stats.totalDistanceTravelled / 110) / res.stats.gameDuration) * 60).toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.'),
+        crossedSummonersRiftTotal: (res.stats.totalDistanceTravelled / 19798).toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.'),
+        crossedSummonersRiftBoots: (res.stats.travelledWithBoots / 19798).toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.'),
+        lastBootsCost: res.results[res.results.length - 1].stats.cost.toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.'),
+        extraUnitsTravelled: res.stats.travelledWithBoots.toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.'),
+        extraTeemosTravelled: (res.stats.travelledWithBoots / 110).toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.'),
+        extraPercentageTravelled: ((res.stats.travelledWithBoots / res.stats.totalDistanceTravelled) * 100).toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.'),
+        extraFlash: (res.stats.travelledWithBoots / 425).toLocaleString('fr-FR', { maximumFractionDigits: 2 }).replace(/,/g, '.')
+    };
+
+    return template;
 };

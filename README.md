@@ -26,11 +26,13 @@ git clone git@github.com:Equinoxbig/boots-rentability.git
 ```
 
 Get in the folder and create a `config.json` file with the following structure :
+For testing purpose you can use `http://localhost:PORT` as adress.
 
 ```json
 {
   "apiKey": "ENTER YOUR API KEY HERE",
-  "port": 2017
+  "port": 2017,
+  "adress":"http://adress.to.your.website:port__above_if_needed"
 }
 ```
 
@@ -38,6 +40,12 @@ If you want to skip the test part don't forget to
 
 ```
 npm install
+```
+
+To run the the app simply use
+
+```
+node main.js
 ```
 
 ## Testing your setup
@@ -55,7 +63,7 @@ Then you'll find the website on `localhost:PORT_ENTERED_ABOVE`.
 
 ## License
 
-PLEASE REFER TO THE [LICENSE](LICENSE.md) FILE.
+PLEASE REFER TO THE [LICENSE](LICENSE) FILE.
 
 ## F.A.Q
 
